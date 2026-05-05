@@ -17,13 +17,18 @@ const authRouter   = require("./routes/auth");
 const app  = express();
 const PORT = process.env.PORT || 5000;
 
-// ─── CORS ──────────────────────────────────────────────────────────────────────
-// Allow your Netlify website, CRM URL, and localhost dev
-const ALLOWED_ORIGINS = [
-  process.env.WEBSITE_URL,      // e.g. https://voyage-ed.netlify.app
-  process.env.CRM_URL,          // e.g. https://voyage-ed-crm.netlify.app
-  "http://localhost:3000",
-  "http://localhost:5173",
+// ––– CORS –––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+const cors = require('cors');
+
+app.use(cors({
+  origin: [
+    'https://capable-naiad-cfa4af.netlify.app',
+    'http://localhost:3000'
+  ],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  credentials: true
+}));
+"http://localhost:5173",
   "http://localhost:5000",
 ].filter(Boolean);
 
