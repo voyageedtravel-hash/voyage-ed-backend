@@ -16,16 +16,7 @@ const PORT = process.env.PORT || 5000;
 
 // ––– CORS –––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 app.use(cors({
-  origin: [
-    'https://capable-naiad-cfa4af.netlify.app',
-    'https://splendid-cactus-c8b150.netlify.app',
-    'https://resonant-blancmange-4d3a03.netlify.app',
-    'https://animated-donut-eb7622.netlify.app',
-    'https://ephemeral-axolotl-371be0.netlify.app',  // ← NEW: Added this line
-    'http://localhost:3000',
-    'http://localhost:5173',
-    'http://localhost:5000'
-  ],
+  origin: '*',  // Allow ALL origins temporarily
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   credentials: true
 }));
