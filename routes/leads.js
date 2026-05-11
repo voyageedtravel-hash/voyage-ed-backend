@@ -69,7 +69,7 @@ router.post("/", async (req, res) => {
 
 // ─── UPDATE ────────────────────────────────────────────────────────────────────
 // Auth required — only CRM users can update
-router.put("/:id", auth, async (req, res) => {
+router.put("/:id", async (req, res) => {
   try {
     const body = req.body;
     delete body._id;
