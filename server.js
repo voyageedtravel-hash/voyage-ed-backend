@@ -8,6 +8,7 @@ const mongoose = require("mongoose");
 const cors     = require("cors");
 const helmet   = require("helmet");
 const morgan   = require("morgan");
+const compression = require("compression");
 require("dotenv").config();
 
 const leadsRouter = require("./routes/leads");
@@ -46,6 +47,7 @@ app.use(cors({
 }));
 
 // ─── MIDDLEWARE ──────────────────────────────────────────────────
+app.use(compression());          // gzip JSON responses — large bandwidth saving
 app.use(helmet());
 app.use(morgan("combined"));
 app.use(express.json({ limit: "2mb" }));

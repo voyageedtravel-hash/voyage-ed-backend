@@ -28,7 +28,12 @@ router.get("/", async (req, res) => {
         { contactNo:   { $regex: search, $options: "i" } },
       ];
     }
+    // Attachments are base64 blobs living inside dealData. Returning them for
+    // every lead on every app load was re-downloading the entire document
+    // library each time and burning bandwidth. The list view never renders
+    // them — full attachments are served by GET /api/leads/:id instead.
     const leads = await Lead.find(filter)
+      .select("-dealData.attachments")
       .sort({ createdAt: -1 })
       .limit(Number(limit))
       .skip(Number(skip))
